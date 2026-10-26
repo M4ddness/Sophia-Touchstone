@@ -1,0 +1,400 @@
+/* ==========================================================
+   North Star Bakery: shared stylesheet
+   Mobile-first: base styles are for small screens, and the
+   media query at the bottom adapts the layout for larger ones.
+   ========================================================== */
+
+/* ---------- Design tokens ---------- */
+:root {
+  /* Palette */
+  --cream: #FFF8F0;     /* primary 1: page background */
+  --brown: #6B3E26;     /* primary 2: header, headings, buttons */
+  --peach: #D88C5A;     /* accent: borders, hovers, highlights */
+  --charcoal: #2F2A26;  /* body text */
+
+  /* Two font families only */
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-body: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Layout */
+  --content-width: 60rem;
+  /* Side space: at least 1rem, grows to keep content centered on wide screens */
+  --gutter: max(1rem, calc((100vw - var(--content-width)) / 2));
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Every direct child of body sits inside the centered content column */
+body > * {
+  margin-inline: var(--gutter);
+}
+
+/* Media must never overflow the column */
+img,
+picture,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+body > img,
+body > picture,
+body > video,
+body > figure,
+body > h4 {
+  max-width: calc(100% - 2 * var(--gutter));
+}
+
+picture img {
+  display: block;
+}
+
+/* ---------- Headings ---------- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  color: var(--brown);
+  line-height: 1.2;
+}
+
+body > h1 {
+  font-size: 1.75rem;
+  margin-block: 1.5rem 1rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-block: 2rem 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--peach);
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-block: 1.5rem 0.5rem;
+}
+
+/* h4 is used as a wrapper for product items, so keep it body-like */
+h4 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-block: 0.5rem 1rem;
+}
+
+p {
+  margin-block: 0 1rem;
+  max-width: 70ch; /* keeps line length comfortable to read */
+}
+
+/* ---------- Header and navigation ---------- */
+body > header {
+  margin-inline: 0;
+  padding: 1rem var(--gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background-color: var(--brown);
+  color: var(--cream);
+  border-bottom: 4px solid var(--peach);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--cream);
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+nav a {
+  display: block;
+  padding: 0.5rem 0.75rem; /* comfortable tap target */
+  color: var(--cream);
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  background-color: var(--peach);
+  color: var(--charcoal);
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--brown);
+  text-decoration-color: var(--peach);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--charcoal);
+}
+
+/* Visible keyboard focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--brown);
+  outline-offset: 2px;
+}
+
+header a:focus-visible {
+  outline-color: var(--peach);
+}
+
+/* ---------- Images and figures ---------- */
+body > img {
+  align-self: center; /* centers the logo on the home page */
+  margin-block: 0.5rem 1rem;
+}
+
+figure {
+  margin: 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+figcaption {
+  color: var(--charcoal);
+  font-style: italic;
+}
+
+picture {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+video {
+  display: block;
+  margin-block: 1rem 2rem;
+  border: 2px solid var(--brown);
+  border-radius: 4px;
+}
+
+/* ---------- Lists (content lists, not the nav) ---------- */
+ul {
+  padding-left: 1.5rem;
+}
+
+body > ul li {
+  padding-block: 0.25rem;
+  border-bottom: 1px solid var(--peach);
+}
+
+body > ul {
+  max-width: 24rem;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2rem;
+}
+
+/* ---------- Contact form ---------- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 36rem;
+  padding: 1rem;
+  background-color: #fff;
+  border: 2px solid var(--brown);
+  border-radius: 6px;
+}
+
+/* The empty <p></p> spacers in the HTML are not needed with flex gap */
+form p:empty {
+  display: none;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--brown);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  font-weight: 400;
+  color: var(--charcoal);
+  background-color: var(--cream);
+  border: 2px solid var(--brown);
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="radio"] {
+  margin: 0.5rem 0.25rem 0.5rem 0.75rem;
+  accent-color: var(--brown);
+}
+
+input[type="radio"]:first-of-type {
+  margin-left: 0;
+}
+
+button {
+  align-self: flex-start;
+  padding: 0.75rem 1.5rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--cream);
+  background-color: var(--brown);
+  border: 2px solid var(--brown);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--peach);
+  border-color: var(--peach);
+  color: var(--charcoal);
+}
+
+/* ---------- Footer spacing ---------- */
+body > *:last-child {
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================
+   Larger screens (tablet and up)
+   ========================================================== */
+@media (min-width: 48em) {
+  body > h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  /* Header: logo text on the left, navigation on the right */
+  body > header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  nav ul {
+    gap: 1rem;
+  }
+
+  /* Product figures: image beside its caption */
+  figure {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  form {
+    padding: 1.5rem;
+  }
+}
+
+/* ==========================================================
+   Interactive features: favorites and form validation
+   ========================================================== */
+
+/* Product lists on the products page */
+h4 ul {
+  list-style: none;
+  padding-left: 0;
+  max-width: 32rem;
+}
+
+h4 li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding-block: 0.5rem;
+  border-bottom: 1px solid var(--peach);
+}
+
+/* Favorite button: outlined when not saved, filled when saved */
+.fav-button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  color: var(--brown);
+  background-color: transparent;
+}
+
+.fav-button.saved {
+  color: var(--cream);
+  background-color: var(--brown);
+}
+
+/* Form error messages (shown next to each field) */
+.error {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--charcoal);
+}
+
+.error:empty {
+  display: none;
+}
+
+.error:not(:empty) {
+  padding-left: 0.5rem;
+  border-left: 4px solid var(--peach);
+}
+
+input.invalid,
+textarea.invalid {
+  border-color: var(--peach);
+  box-shadow: 0 0 0 2px var(--peach);
+}
+
+/* Success message after a valid submit */
+#form-message:not(:empty) {
+  max-width: 36rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-left: 6px solid var(--peach);
+  font-weight: 600;
+}

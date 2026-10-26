@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>North Star Bakery | Contact</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+       <header>
+        <h1>North Star Bakery</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+       </header>
+       <h2>Contact Form</h2>
+       <form action="request" method="post">
+            <label>
+                Name or Company name:
+                <input type="text" required>
+            </label>
+            <p></p>
+            <label>
+                Email Address:
+                <input type="email" required>
+            </label>
+            <p></p>
+            <label>
+                Request Type:
+                <input type="radio" name="rqtype" value="preorder" required>
+                Pre-Order
+                <input type="radio" name="rqtype" value="question" required>
+                General Inquiry
+            </label>
+            <p></p>
+            <label>
+                Pickup Date:
+                <input type="date">
+            </label>
+            <p></p>
+            <label>
+                Allergy notes
+                <textarea name="allergy" id="allergy" rows="4" cols="50"></textarea>
+            </label>
+            <button type="submit">Send</button>
+       </form>
+       <h2>Location</h2>
+            <p>Placeholder text</p>
+       <h2>Hours Of Operation</h2>
+            <ul>
+                <li>Monday</li>
+                <li>Tuesday</li>
+                <li>Wednesday</li>
+                <li>Thursday</li>
+                <li>Friday</li>
+                <li>Saturday</li>
+                <li>Sunday</li>
+            </ul>
+    </body>
+</html>
